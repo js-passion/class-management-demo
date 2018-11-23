@@ -23,6 +23,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/bootstrap3/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []

@@ -24,7 +24,8 @@ export class PresenterDetailsComponent implements OnInit {
   }
 
   addPresenter(){
-    this.addButtonClicked = true;
+    this.router.navigate(['/add-presenter'])
+    // this.addButtonClicked = true;
   }
 
   showSettings(){

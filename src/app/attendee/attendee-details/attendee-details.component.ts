@@ -18,22 +18,24 @@ export class AttendeeDetailsComponent implements OnInit {
   addButtonClicked: boolean = false;
   
   showDashboard(){
-    this.router.navigate(['/'])
+    this.router.navigate(['/']);
   }
 
   
   showSettings(){
-    this.router.navigate(['/settings'])
+    this.router.navigate(['/settings']);
   }
 
   addAttendee(){
-    this.addButtonClicked = true;
+    this.router.navigate(['/add-attendee']);
+    // this.addButtonClicked = true;
   }
 
   ngOnInit() {
     this.authGaurd.isInsidePresenter = false;
 
     this.classService.getAttendeeDetails().subscribe(attendeeList => {
+      this.classService.attendee = attendeeList;
       this.attendeeList = attendeeList;
       console.log('attendee list - ', this.attendeeList)
     });

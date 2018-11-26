@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from 'src/app/user';
+import { ClassDetailsService } from 'src/app/class-details.service';
+import { Router } from '@angular/router';
+import { AuthServiceService } from 'src/app/auth-service.service';
 
 @Component({
   selector: 'app-add-presenter',
@@ -12,7 +15,7 @@ export class AddPresenterComponent implements OnInit {
 
   user: User;
 
-  constructor() {
+  constructor(private classService:ClassDetailsService, private router: Router, private authGaurd: AuthServiceService) {
     this.user = new User();
   }
 
@@ -21,6 +24,11 @@ export class AddPresenterComponent implements OnInit {
 
   addPresenter(presenterForm){
     this.user = presenterForm.value;
-    this.currentPresenters.push(this.user);
+    this.classService.presenter.push(this.user);
+    this.backToList();
+  }
+
+  backToList() {
+    this.router.navigate(['/presenter']);
   }
 }

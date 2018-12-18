@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { User } from 'src/app/user';
 import { ClassDetailsService } from 'src/app/class-details.service';
 import { Router } from '@angular/router';
@@ -11,7 +11,8 @@ import { AuthServiceService } from 'src/app/auth-service.service';
 })
 export class AddPresenterComponent implements OnInit {
 
-  @Input() currentPresenters: User[];
+  @Output() hideAddPresenter = new EventEmitter();
+  displayAddPresenter:string = 'false';
 
   user: User;
 
@@ -26,6 +27,8 @@ export class AddPresenterComponent implements OnInit {
     this.user = presenterForm.value;
     this.classService.presenter.push(this.user);
     this.backToList();
+    console.log('--this.displayAddPresenter--',this.displayAddPresenter);
+    this.hideAddPresenter.emit(this.displayAddPresenter);
   }
 
   backToList() {

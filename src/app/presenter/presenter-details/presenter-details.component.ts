@@ -23,9 +23,12 @@ export class PresenterDetailsComponent implements OnInit {
     this.authGaurd.isInsidePresenter = true;
   }
 
-  addPresenter(){
-    this.router.navigate(['/add-presenter'])
-    // this.addButtonClicked = true;
+  addPresenter(addPresenterValue){
+    console.log('-----------',addPresenterValue);
+    if(addPresenterValue==='false')
+      this.addButtonClicked = false;
+    else
+      this.addButtonClicked = true;
   }
 
   showSettings(){

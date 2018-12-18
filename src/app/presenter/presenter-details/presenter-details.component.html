@@ -1,7 +1,7 @@
 <div class="button-row" style="padding-top: 20px;padding-bottom: 20px">
-  <button class="btn btn-primary" (click)="addPresenter()">Add Presenter</button>
+  <button class="btn btn-primary" (click)="addPresenter('true')">Add Presenter</button>
 </div>
-
+<app-add-presenter *ngIf="addButtonClicked" (hideAddPresenter)="addPresenter($event)"></app-add-presenter>
 <h3>Presenter(s) Details</h3>
 
 <table class="table table-bordered table-striped table-hover">

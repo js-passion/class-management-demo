@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { User } from 'src/app/user';
 import { ClassDetailsService } from 'src/app/class-details.service';
 import { Router } from '@angular/router';
@@ -14,6 +14,9 @@ export class AddAttendeeComponent implements OnInit {
   @Input() user: User = new User(1, '', '', '');
   @Input() currentAttendees: User[];
 
+  @Output() hideAddAttendee = new EventEmitter();
+  displayAddAttendee:string = 'false';
+
 
   constructor(private classService:ClassDetailsService, private router: Router, private authGaurd: AuthServiceService) {
 
@@ -24,7 +27,7 @@ export class AddAttendeeComponent implements OnInit {
   addAttendee(form){
     this.user = form.value;
     this.classService.attendee.push(this.user);
-    this.router.navigate(['/attendee']);
+    this.hideAddAttendee.emit(this.displayAddAttendee);
   }
 
   backToList() {

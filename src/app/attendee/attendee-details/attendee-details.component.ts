@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ClassDetailsService } from 'src/app/class-details.service';
 import { User } from 'src/app/user';
 import { Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { AuthServiceService } from 'src/app/auth-service.service';
   styleUrls: ['./attendee-details.component.css']
 })
 export class AttendeeDetailsComponent implements OnInit {
-
+  
   constructor(private classService:ClassDetailsService, private router: Router, private authGaurd: AuthServiceService) { }
 
   attendeeList: User[];
@@ -26,9 +26,12 @@ export class AttendeeDetailsComponent implements OnInit {
     this.router.navigate(['/settings']);
   }
 
-  addAttendee(){
-    this.router.navigate(['/add-attendee']);
-    // this.addButtonClicked = true;
+  
+  addAttendee(addPresenterValue){
+    if(addPresenterValue==='false')
+      this.addButtonClicked = false;
+    else
+      this.addButtonClicked = true;
   }
 
   ngOnInit() {
@@ -37,7 +40,6 @@ export class AttendeeDetailsComponent implements OnInit {
     this.classService.getAttendeeDetails().subscribe(attendeeList => {
       this.classService.attendee = attendeeList;
       this.attendeeList = attendeeList;
-      console.log('attendee list - ', this.attendeeList)
     });
   }
 }
